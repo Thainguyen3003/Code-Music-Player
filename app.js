@@ -16,6 +16,7 @@ const $$ = document.querySelectorAll.bind(document);
 
 const player = $('.player');
 const heading = $('header h2');
+const cd = $('.cd');
 const cdThumb = $('.cd-thumb');
 const audio = $('#audio');
 const playBtn = $('.btn-toggle-play');
@@ -115,9 +116,17 @@ const app = {
 
     handleEvents: function() {
         const _this = this;
-        const cd = $('.cd');
         const cdWidth = cd.offsetWidth;
         
+        // Xử lí CD quay / dừng
+        const cdThumbAnimate = cdThumb.animate([
+            { transform: 'rotate(360deg)'}
+        ], {
+            duration: 10000, // 10s
+            iterations: Infinity // liên quan đến timming function, loop bao nhiêu lần
+        })
+        cdThumbAnimate.pause();
+
         // Xử lí phóng to thu nhỏ
         document.onscroll = function() {    
             // window.scrollY / document.documentElement.scrollTop lấy chiều dài lăn chuột
@@ -140,12 +149,14 @@ const app = {
         audio.onplay = function() {
             _this.isPlaying = true;
             player.classList.add('playing');
+            cdThumbAnimate.play();
         }
 
         // Khi song pause
         audio.onpause = function() {
             _this.isPlaying = false;
             player.classList.remove('playing');
+            cdThumbAnimate.pause();
         }
 
         // Khi tiến độ bài hát thay đổi
