@@ -64,6 +64,12 @@ const app = {
             singer: 'AMEE',
             path: './musics/thay-moi-co-gai-yeu-anh-AMEE.mp3',
             image: './images/c4a49014b42161249400b76a35cf5b99.jpg'
+        },
+        {
+            name: 'Xuân thì',
+            singer: 'Hà Anh Tuấn',
+            path: './musics/XuanThi-HaAnhTuan-6803648.mp3',
+            image: './images/xuan-thi.jpg'
         }
     ],
     setConfig: function(key, value) {
